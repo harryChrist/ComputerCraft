@@ -108,7 +108,7 @@ function exibirPagina()
         print(i .. ". " .. list[i].channel .. " [" .. #list[i].users .. "]")
       end
       term.setTextColor(4)
-      print("\n?. Ajuda\n")
+      print("\n?. Ajuda\nuse: [number] [password]")
       term.setTextColor(1)
       term.setCursorPos(1, 16)
       print("> page: " .. pages.page .. "/" .. QuantPaginas)
