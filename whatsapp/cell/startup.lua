@@ -283,6 +283,6 @@ local function sendMessage()
   end
 end
 
-os.setComputerLabel(playerConfig)
+os.setComputerLabel("Zap - "..playerConfig)
 -- executar as duas funções em paralelo
 parallel.waitForAny(receiveMessage, sendMessage)

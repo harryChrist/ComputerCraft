@@ -83,17 +83,33 @@ function deleteChat(player, text)
   end
 end
 
-function insertUser(player, text)
+function insertUser(player, text, pass)
   text = string.lower(text)
   if fs.exists(caminho_pasta .. text .. ".lua") then
     local arquivo = fs.open(caminho_pasta .. text .. ".lua", "w")
     tabela = textutils.unserialize(arquivo.readAll())
-    table.insert(tabela.users, player)
-    arquivo.close()
-    return { response = 200, tabela = tabela }
+
+    -- Verificar se o usuário ja foi colocado nessa merda
+    searchP = false
+    for i, name in ipairs(tabela.users) do
+      if name == player then
+        searchP = true
+        break
+      end
+    end
+
+    if searchP then
+      -- Esse player ja está ali
+      return false
+    else
+      table.insert(tabela.users, player)
+      arquivo.write(textutils.serialize(newTable))
+      arquivo.close()
+      return true
+    end
   else
     -- Caso a tabela não existe, ou o chat não exista.
-    return { response = 404, tabela = {} }
+    return false
   end
 end
 
@@ -172,7 +188,14 @@ local function CreateSystem()
       send(creating)
     elseif command == "delete" then
     elseif command == "join" then --player, channel, pass
-
+      local inserttochannel = insertUser(player, channel, pass)
+      if inserttochannel then
+        sendAdm(message.player, "§fO Eh isso, agora você está conectado no canal: §a" .. message.channel)
+      else
+        sendAdm(message.player,
+          "§fSorry, Não foi possivel entrar no canal §4" ..
+          message.channel .. "§f ;(")
+      end
       --modem.transmit({command = })
     end
   end
