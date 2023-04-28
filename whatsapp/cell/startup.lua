@@ -232,7 +232,7 @@ local function sendMessage()
       -- Verifique se a separação foi bem sucedida e exiba o resultado
       if primeiro ~= nil and resto ~= nil then
         if AllRooms[tonumber(primeiro)] then
-          send({ command = "join", player = playerConfig, channel = AllRooms[primeiro].channel, pass = resto })
+          send({ command = "join", player = playerConfig, channel = AllRooms[tonumber(primeiro)].channel, pass = resto })
         end
       end
     elseif pages.command == "salas" then
