@@ -229,7 +229,7 @@ local function sendMessage()
       local primeiro, resto = msg:match("(%d+)%s(.*)")
       -- Verifique se a separação foi bem sucedida e exiba o resultado
       if primeiro ~= nil and resto ~= nil then
-        if Salas[primeiro] then
+        if Salas[tonumber(primeiro)] then
           send({ command = "join", player = playerConfig, channel = Salas[primeiro].channel, pass = resto })
         end
       end
