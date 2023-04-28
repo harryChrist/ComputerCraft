@@ -227,14 +227,17 @@ local function sendMessage()
       }
     elseif not (pages.chat == "") then
       send({ command = "send", player = playerConfig, channel = pages.chat, message = msgNotLower })
-    -- nas Salas
+      -- nas Salas
     elseif pages.command == "entrar" then
-      local primeiro, resto = msg:match("(%d+)%s(.*)")
+      local posicao = msg:find("%s")
       -- Verifique se a separação foi bem sucedida e exiba o resultado
-      if primeiro ~= nil and resto ~= nil then
+      if posicao ~= nil then
+        local primeiro = msg:sub(1, posicao - 1)
+        local resto = msg:sub(posicao + 1)
         if AllRooms[tonumber(primeiro)] then
           send({ command = "join", player = playerConfig, channel = AllRooms[tonumber(primeiro)].channel, pass = resto })
         end
+        sendf(primeiro .. resto)
       end
     elseif pages.command == "salas" then
       local numberRoom = tonumber(msg)
@@ -284,6 +287,6 @@ local function sendMessage()
   end
 end
 
-os.setComputerLabel("Zap - "..playerConfig)
+os.setComputerLabel("Zap - " .. playerConfig)
 -- executar as duas funções em paralelo
 parallel.waitForAny(receiveMessage, sendMessage)
