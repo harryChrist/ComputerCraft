@@ -173,6 +173,7 @@ local function CreateSystem()
     local e, p, channel, replyChannel, message, distance = os.pullEvent("modem_message")
     -- {command="", player="", id="", channel="", text=""}
     local command = message.command
+    print(command)
     if command == "create" then
       print("> Criando um novo canal!\nBy:" .. message.player .. " Nome:" .. message.channel .. " Senha:" .. message.pass)
       local creating = createChat(message.player, message.channel, message.pass)
