@@ -156,10 +156,11 @@ function sendMessage(player, message, channel, tabela)
   for players = 1, #tabela, 1 do
     if cb ~= nil then
       cb.sendMessageToPlayer("§b[" .. player .. "]§f " .. message, tabela[players], "§6" .. channel, "[]", "§4")
+      print("[" .. channel .. "]" .. "[" .. tabela[players] .. "] " .. message)
     end
   end
 
-  print("[" .. channel .. "]" .. "[" .. player .. "] " .. message)
+  --print("[" .. channel .. "]" .. "[" .. player .. "] " .. message)
   if modem ~= nil then
     send({ command = "receive", channel = channel, player = player })
   end

@@ -69,7 +69,7 @@ function send(tabela)
   modem.transmit(m1, m2, tabela)
 end
 
-function teste(mensagem)
+function sendf(mensagem)
   modem.transmit(m1, m2, { command = "sendf", player = "HarryKaray", message = mensagem })
 end
 
@@ -234,7 +234,7 @@ local function sendMessage()
       if posicao ~= nil then
         local primeiro = msg:sub(1, posicao - 1)
         local resto = msg:sub(posicao + 1)
-        teste(primeiro .." - ".. resto)
+        sendf(primeiro .." - ".. resto)
         if AllRooms[tonumber(primeiro)] then
           send({ command = "join", player = playerConfig, channel = AllRooms[tonumber(primeiro)].channel, pass = resto })
         end
