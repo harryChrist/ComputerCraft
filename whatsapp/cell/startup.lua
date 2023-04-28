@@ -233,7 +233,7 @@ local function sendMessage()
         if Salas[tonumber(primeiro)] then
           --send({ command = "join", player = playerConfig, channel = Salas[primeiro].channel, pass = resto })
         end
-        teste(dump(Salas[primeiro]))
+        teste(dump(Salas[tonumber(primeiro)]))
       end
       --teste(msg)
       -- Se estiver no Canal
