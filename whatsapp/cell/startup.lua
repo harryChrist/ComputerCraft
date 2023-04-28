@@ -188,6 +188,7 @@ local function sendMessage()
   while true do
     exibirPagina()
     local msg = read()
+    local msgNotLower = msg
     msg = tostring(msg)
     if not tonumber(msg) then msg = string.lower(msg) end
     -- Global Chat
@@ -224,7 +225,7 @@ local function sendMessage()
         }
       }
     elseif not (pages.chat == "") then
-      send({ command = "send", player = playerConfig, channel = pages.chat, message = msg })
+      send({ command = "send", player = playerConfig, channel = pages.chat, message = msgNotLower })
     elseif pages.command == "entrar" then
       local primeiro, resto = msg:match("(%d+)%s(.*)")
       -- Verifique se a separação foi bem sucedida e exiba o resultado
@@ -234,6 +235,7 @@ local function sendMessage()
         end
         teste(primeiro + resto)
       end
+      teste(primeiro + resto)
       -- Se estiver no Canal
     elseif pages.command == "salas" then
       local numberRoom = tonumber(msg)
