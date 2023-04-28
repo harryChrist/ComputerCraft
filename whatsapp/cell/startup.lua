@@ -235,7 +235,7 @@ local function sendMessage()
         end
         teste(primeiro + resto)
       end
-      teste(primeiro + resto)
+      teste(msg)
       -- Se estiver no Canal
     elseif pages.command == "salas" then
       local numberRoom = tonumber(msg)
