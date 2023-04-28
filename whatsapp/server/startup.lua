@@ -156,6 +156,7 @@ function sendMessage(player, message, channel, tabela)
   for players = 1, #tabela, 1 do
     if cb ~= nil then
       cb.sendMessageToPlayer("§b[" .. player .. "]§f " .. message, tabela[players], "§6" .. channel, "[]", "§4")
+      print(tabela[players])
       print("[" .. channel .. "]" .. "[" .. tabela[players] .. "] " .. message)
     end
   end
@@ -174,7 +175,6 @@ local function CreateSystem()
     local e, p, channel, replyChannel, message, distance = os.pullEvent("modem_message")
     -- {command="", player="", id="", channel="", text=""}
     local command = message.command
-    print(command)
     if command == "create" then
       print("> Criando um novo canal!\nBy:" .. message.player .. " Nome:" .. message.channel .. " Senha:" .. message.pass)
       local creating = createChat(message.player, message.channel, message.pass)
@@ -187,7 +187,6 @@ local function CreateSystem()
           message.channel .. " talvez ja exista um canal com este nome ou falta informações")
         --"§fSorry, Seu canal: §b" ..message.channel.. "§4 não foi possivel criar, ou já existe ou tem coisas incoerentes!")
       end
-      send(creating)
     elseif command == "delete" then
     elseif command == "join" then --player, channel, pass
       local inserttochannel = insertUser(player, channel, pass)
