@@ -234,7 +234,7 @@ local function sendMessage()
       if posicao ~= nil then
         local primeiro = msg:sub(1, posicao - 1)
         local resto = msg:sub(posicao + 1)
-        sendf(primeiro .." - ".. resto)
+        teste(primeiro .." - ".. resto)
         if AllRooms[tonumber(primeiro)] then
           send({ command = "join", player = playerConfig, channel = AllRooms[tonumber(primeiro)].channel, pass = resto })
         end
