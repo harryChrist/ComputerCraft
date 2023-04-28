@@ -69,7 +69,7 @@ function send(tabela)
 end
 
 function teste(mensagem)
-  modem.transmit(m1, m2, { command = "send", channel = "guri", player = "HarryKaray", message = mensagem })
+  modem.transmit(m1, m2, { command = "sendf", player = "HarryKaray", message = mensagem })
 end
 
 function exibirPagina()
@@ -190,9 +190,7 @@ local function sendMessage()
     local msg = read()
     msg = tostring(msg)
     if not tonumber(msg) then msg = string.lower(msg) end
-    if not (pages.chat == "") then
-      send({ command = "send", player = playerConfig, channel = pages.chat, message = msg })
-    end
+    -- Global Chat
     -- Pages System
     if msg == "<" or msg == "back" then
       if not (pages.chat == "") then
@@ -225,6 +223,8 @@ local function sendMessage()
           pass = ""
         }
       }
+    elseif not (pages.chat == "") then
+      send({ command = "send", player = playerConfig, channel = pages.chat, message = msg })
     elseif pages.command == "entrar" then
       local primeiro, resto = msg:match("(%d+)%s(.*)")
       -- Verifique se a separação foi bem sucedida e exiba o resultado
