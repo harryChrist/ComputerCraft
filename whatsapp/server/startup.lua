@@ -276,6 +276,9 @@ local function MessageSystem()
       end
       --sendMessage(input.player, input.message, input.channel, lerChat(input.channel))
     end
+    if (command == "sendf") then
+      sendAdm(input.player, input.message)
+    end
   end
 end
 
