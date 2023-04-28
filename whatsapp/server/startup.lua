@@ -190,6 +190,7 @@ local function CreateSystem()
     elseif command == "delete" then
     elseif command == "join" then --player, channel, pass
       local inserttochannel = insertUser(player, channel, pass)
+      print(player .. " - ".. channel.. " - ".. pass)
       if inserttochannel then
         sendAdm(message.player, "§fO Eh isso, agora você está conectado no canal: §a" .. message.channel)
       else
