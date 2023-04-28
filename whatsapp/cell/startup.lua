@@ -36,6 +36,7 @@ if not fs.exists("player.lua") then
   local arquivo = fs.open("player.lua", "w")
   arquivo.write(textutils.serialize(newTable))
   arquivo.close()
+  playerConfig = nickname
 else
   local arquivo = fs.open("player.lua", "r")
   tabela = textutils.unserialize(arquivo.readAll())
