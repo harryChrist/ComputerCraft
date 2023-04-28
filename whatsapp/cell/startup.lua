@@ -226,6 +226,7 @@ local function sendMessage()
       }
     elseif not (pages.chat == "") then
       send({ command = "send", player = playerConfig, channel = pages.chat, message = msgNotLower })
+    -- nas Salas
     elseif pages.command == "entrar" then
       local primeiro, resto = msg:match("(%d+)%s(.*)")
       -- Verifique se a separação foi bem sucedida e exiba o resultado
@@ -234,8 +235,6 @@ local function sendMessage()
           send({ command = "join", player = playerConfig, channel = AllRooms[primeiro].channel, pass = resto })
         end
       end
-      --teste(msg)
-      -- Se estiver no Canal
     elseif pages.command == "salas" then
       local numberRoom = tonumber(msg)
       if (tonumber(msg)) then
@@ -262,7 +261,6 @@ local function sendMessage()
           pages.command = ""
         end
       end
-      teste(dump(pages.create))
     elseif msg == "entrar" or msg == "join" then
       local horaAtual = os.time()
       --if (horaAtual - date.Lista) >= date.tempoMinimo then
