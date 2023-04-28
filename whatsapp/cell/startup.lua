@@ -283,6 +283,6 @@ local function sendMessage()
   end
 end
 
-os.setComputerLabel("WhatsApp")
+os.setComputerLabel(playerConfig)
 -- executar as duas funções em paralelo
 parallel.waitForAny(receiveMessage, sendMessage)

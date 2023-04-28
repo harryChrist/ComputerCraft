@@ -83,8 +83,21 @@ function deleteChat(player, text)
   end
 end
 
+function insertUser(player, text)
+  text = string.lower(text)
+  if fs.exists(caminho_pasta .. text .. ".lua") then
+    local arquivo = fs.open(caminho_pasta .. text .. ".lua", "w")
+    tabela = textutils.unserialize(arquivo.readAll())
+    table.insert(tabela.users, player)
+    arquivo.close()
+    return { response = 200, tabela = tabela }
+  else
+    -- Caso a tabela não existe, ou o chat não exista.
+    return { response = 404, tabela = {} }
+  end
+end
+
 function lerChat(text)
-  -- Texto rebaixado --
   text = string.lower(text)
   if fs.exists(caminho_pasta .. text .. ".lua") then
     local arquivo = fs.open(caminho_pasta .. text .. ".lua", "r")
@@ -159,6 +172,7 @@ local function CreateSystem()
       send(creating)
     elseif command == "delete" then
     elseif command == "join" then --player, channel, pass
+
       --modem.transmit({command = })
     end
   end
